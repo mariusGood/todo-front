@@ -20,21 +20,22 @@ const TaskList = ({ data, reload }) => {
 
   return (
     <S.TaskList>
-      {data.map((todo) => (
-        <Task key={todo.id}>
-          {todo.title}
-          <div>
-            <i
-              onClick={() => update(todo.id, todo.title)}
-              className='fa-solid fa-pencil'
-            ></i>
-            <i
-              onClick={() => remove(todo.id)}
-              className='fa-solid fa-trash-can'
-            ></i>
-          </div>
-        </Task>
-      ))}
+      {data &&
+        data.map((todo) => (
+          <Task key={todo.id}>
+            {todo.title}
+            <div>
+              <i
+                onClick={() => update(todo.id, todo.title)}
+                className='fa-solid fa-pencil'
+              ></i>
+              <i
+                onClick={() => remove(todo.id)}
+                className='fa-solid fa-trash-can'
+              ></i>
+            </div>
+          </Task>
+        ))}
     </S.TaskList>
   );
 };

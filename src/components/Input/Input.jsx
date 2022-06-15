@@ -6,13 +6,12 @@ import { postData } from '../../utils/services';
 
 const Input = ({ children, text }) => {
   const [data, setData] = useState([]);
-
+  console.log('data ===', data);
   const formHandle = async () => {
     const inputData = {
       title: data,
     };
-    const res = await postData(inputData);
-    return res;
+    return await postData(inputData);
   };
 
   return (
@@ -21,6 +20,7 @@ const Input = ({ children, text }) => {
         placeholder={text}
         value={data}
         onChange={(e) => setData(e.target.value)}
+        onClick={(e) => setData(e.target.value)}
       >
         {children}
       </S.Input>
