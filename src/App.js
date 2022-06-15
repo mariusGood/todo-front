@@ -34,7 +34,7 @@ function App() {
       <Container>
         <div>Pending tasks:{data.length}</div>
         <Title>Todo list</Title>
-        <Input />
+        <Input reload={renderData} />
         <TaskList reload={renderData} data={currentPost} page={page} />
         <Pagination
           taskPerPage={taskPerPage}

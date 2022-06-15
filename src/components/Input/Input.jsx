@@ -4,24 +4,24 @@ import * as S from './Input.styles';
 import Button from '../Button/Button';
 import { postData } from '../../utils/services';
 
-const Input = ({ children, text }) => {
+const Input = ({ children, reload }) => {
   const [data, setData] = useState([]);
-  console.log('data ===', data);
-  const formHandle = async () => {
+  async function formHandle(e) {
+    e.preventDefault();
     const inputData = {
       title: data,
     };
-    return await postData(inputData);
-  };
+    const res = await postData(inputData);
+
+    if (res.msg === 'Success') {
+      setData('');
+      reload();
+    }
+  }
 
   return (
     <S.InputWrapper onSubmit={formHandle}>
-      <S.Input
-        placeholder={text}
-        value={data}
-        onChange={(e) => setData(e.target.value)}
-        onClick={(e) => setData(e.target.value)}
-      >
+      <S.Input value={data} onChange={(e) => setData(e.target.value)}>
         {children}
       </S.Input>
       <Button type='submit' color='#9c4700' bg='#f9bf90'>
@@ -33,7 +33,7 @@ const Input = ({ children, text }) => {
 
 Input.propTypes = {
   children: PropTypes.any,
-  text: PropTypes.string,
+  reload: PropTypes.func,
 };
 
 export default Input;

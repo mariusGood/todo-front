@@ -23,8 +23,10 @@ export const postData = async (data) => {
       body: JSON.stringify(data),
     });
     const respInJs = await resp.json();
+    console.log('respInJs ===', respInJs);
     return respInJs;
   } catch (error) {
+    console.log('error ===', error);
     return error;
   }
 };
